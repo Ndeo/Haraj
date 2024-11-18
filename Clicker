@@ -1,0 +1,40 @@
+import pandas as pd
+import time
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+from bs4 import BeautifulSoup
+
+
+# Set up WebDriver with options to ignore SSL errors
+options = webdriver.ChromeOptions()
+options.add_argument('--ignore-certificate-errors')
+options.add_argument('--ignore-ssl-errors')
+driver = webdriver.Chrome(options=options)
+
+# Iterate over each company
+
+url = ""
+
+# Navigate to the Yahoo Finance historical data page
+driver.get(url)
+
+# Wait for the page to load completely
+time.sleep(10)  # Adjust as needed
+
+# Click the necessary buttons to display the correct data range
+try:
+    first_button = driver.find_element(By.XPATH, 'BUTTONXPATH')
+    first_button.click()
+    time.sleep(3)
+    second_button = driver.find_element(By.XPATH, 'BUTTONXPATH2')
+    second_button.click()
+
+    title = driver.find_element(By.XPATH,"TITLEXPATH")
+    
+    print(f"Clicked the buttons for {title}, {url} :", e)
+
+except Exception as e:
+    print(f"Could not click the buttons for {url} :", e)
+    
+
+    
